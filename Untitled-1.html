@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trees with Crows</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      height: auto;
+      background-color: #d1d1d1;
+      overflow-x: hidden; 
+    }
+    .background {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    .banner {
+  position: relative;
+  top: 0%;
+  left: 50%;
+  width: 699px;
+  height: 1500px;
+  transform: translate(-50%, 100%);
+  background-color: #6c6c6c;
+  padding: 20px 40px;
+  border: 2px solid #6b6b6b;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  z-index: 1;
+}
+
+.banner h1 {
+  margin: 0 0 10px;
+  font-size: 54px;
+  color:  #d1d1d1;
+  text-align: left;
+}
+.banner h2 {
+  margin: 0 0 10px;
+  font-size: 54px;
+  color:  #d1d1d1;
+  text-align: center;
+}
+
+.banner p {
+  margin: 0;
+  font-size: 16px;
+  color:  #d1d1d1;
+  text-align: left;
+}
+.banner-image {
+  float: right; /* Выровнять по правому краю */
+  max-width: 280px; /* Чтобы изображение не превышало половину ширины баннера */
+  height: auto; /* Сохранить пропорции */
+  margin-left: 20px; /* Отступ слева от текста */
+  border-radius: 8px; /* Закруглённые углы, необязательно */
+}
+/* Контейнер для независимых картинок */
+.independent-images {
+  position: relative; /* Независимое позиционирование внутри баннера */
+  left: 50%; /* Центрировать по горизонтали */
+  transform: translateX(-50%);
+  display: flex; /* Размещаем картинки в линию */
+  gap: 117px; /* Расстояние между картинками */
+  z-index: 1; /* Чтобы картинки были над другими элементами */
+}
+
+/* Стили для независимых картинок */
+.independent-images img {
+  width: 80px; /* Ширина картинки */
+  height: 80px; /* Высота картинки */
+  border-radius: 50%; /* Закругленные углы */
+  border: 2px solid #d1d1d1; /* Рамка вокруг картинок */
+  object-fit: cover; /* Заполнение блока картинкой */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Тень */
+  align: center;
+}
+/* Контейнер для нижних картинок */
+.bottom-images {
+  display: flex; /* Расположить картинки в одну линию */
+  justify-content: space-around; /* Равномерно распределить пространство между картинками */
+  align-items: center; /* Центрировать по вертикали */
+  position: relative; /* Расположить внутри баннера */
+  bottom: 20px; /* Отступ от нижнего края баннера */
+  left: 50%; /* Центрировать по горизонтали */
+  transform: translateX(-50%);
+  width: 90%; /* Ширина контейнера */
+}
+
+/* Стили для картинок */
+.bottom-images img {
+  width: 120px; /* Ширина каждой картинки */
+  height: 280px; /* Высота каждой картинки */
+  border: 2px solid #ccc; /* Рамка вокруг картинок */
+  border-radius: 8px; /* Закругленные углы */
+  object-fit: cover; /* Заполнить блок, сохраняя пропорции */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Тень */
+}
+
+.control-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #555;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.control-panel button {
+  background-color: #6c6c6c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.control-panel button:hover {
+  background-color: #333;
+}
+
+
+    .hill {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to top, #808080, #a1a1a1);
+    }
+    .hill.left {
+      clip-path: polygon(0% 100%, 0% 50%, 40% 60%, 60% 80%, 100% 100%);
+      background: linear-gradient(to top, #6c6c6c, #8e8e8e);
+    }
+    .hill.right {
+      clip-path: polygon(0% 100%, 40% 80%, 60% 60%, 100% 50%, 100% 100%);
+      background: linear-gradient(to top, #808080, #a1a1a1);
+    }
+    .mountain {
+      position: absolute;
+      bottom: 10%;
+      width: 60%;
+      height: 30%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #6b6b6b);
+      opacity: 0.5;
+    }
+    .mountain.left {
+      left: -10%;
+      clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    }
+    .mountain.right {
+      right: -10%;
+      clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    }
+    .tree {
+      position: absolute;
+      bottom: -50%;
+      width: 5px;
+      height: 600px;
+      background-color: #555;
+      border-radius: 4px;
+    }
+    .tree.left {
+      left: 15%;
+    }
+    .tree.right {
+      right: 15%;
+    }
+    .tree::before, .tree::after {
+      content: "";
+      position: absolute;
+      width: 5px;
+      background-color: #555;
+      border-radius: 4px;
+    }
+    .tree::before {
+      height: 50px;
+      top: 150px;
+      transform: rotate(-45deg);
+      left: -20px;
+    }
+    .tree::after {
+      height: 50px;
+      top: 150px;
+      transform: rotate(45deg);
+      right: -20px;
+    }
+    .tree .branch-top {
+      position: absolute;
+      width: 3px;
+      height: 30px;
+      background-color: #555;
+      top: 60px;
+      left: 0;
+    }
+    .tree .branch-mid {
+      position: absolute;
+      width: 3px;
+      height: 40px;
+      background-color: #555;
+      bottom: 100px;
+      left: 0;
+    }
+    .tree .branch-mid::before, .tree .branch-mid::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 40px;
+      background-color: #555;
+    }
+    .tree .branch-mid::before {
+      transform: rotate(45deg);
+      left: -15px;
+    }
+    .tree .branch-mid::after {
+      transform: rotate(-45deg);
+      right: -15px;
+    }
+    
+    .crow {
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  width: 75px; /* Уменьшено вдвое */
+  height: 50px; /* Уменьшено вдвое */
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.body {
+  width: 50px; /* Уменьшено вдвое */
+  height: 35px; /* Уменьшено вдвое */
+  background: #333;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px; /* Корректировка позиции */
+  left: 12.5px; /* Корректировка позиции */
+}
+
+.wing {
+  width: 40px; /* Уменьшено вдвое */
+  height: 30px; /* Уменьшено вдвое */
+  background: rgb(117, 117, 117);
+  border-radius: 50%;
+  position: absolute;
+  top: 20px; /* Корректировка позиции */
+  left: 17.5px; /* Корректировка позиции */
+  animation: wingFlap 0.5s infinite ease-in-out;
+}
+
+.wing::after {
+  content: '';
+  position: absolute;
+  width: 30px; /* Уменьшено вдвое */
+  height: 20px; /* Уменьшено вдвое */
+  background: #333;
+  border-radius: 50%;
+  top: 10px; /* Корректировка позиции */
+  left: 5px; /* Корректировка позиции */
+  transform: rotate(-30deg);
+}
+
+.head {
+  width: 25px; /* Уменьшено вдвое */
+  height: 25px; /* Уменьшено вдвое */
+  background:#333;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 35px; /* Корректировка позиции */
+}
+
+.eye {
+  width: 5px; /* Уменьшено вдвое */
+  height: 5px; /* Уменьшено вдвое */
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 7.5px; /* Корректировка позиции */
+  left: 10px; /* Корректировка позиции */
+}
+
+.beak {
+  width: 15px; /* Уменьшено вдвое */
+  height: 7.5px; /* Уменьшено вдвое */
+  background: rgb(117, 117, 117);
+  position: absolute;
+  top: 12.5px; /* Корректировка позиции */
+  left: 25px; /* Корректировка позиции */
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.tail {
+  width: 25px; /* Уменьшено вдвое */
+  height: 10px; /* Уменьшено вдвое */
+  background: #333;
+  position: absolute;
+  bottom: -2.5px; /* Корректировка позиции */
+  left: 2.5px; /* Корректировка позиции */
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+.legs {
+  position: absolute;
+  bottom: 0;
+  left: 25px; /* Корректировка позиции */
+}
+
+.leg {
+  width: 2.5px; /* Уменьшено вдвое */
+  height: 20px; /* Уменьшено вдвое */
+  background: #333;
+  position: absolute;
+  bottom: -20px; /* Корректировка позиции */
+}
+
+.leg:nth-child(2) {
+  left: 10px; /* Уменьшено вдвое */
+}
+
+    @keyframes takeoff {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      20% {
+        transform: translate(0, 10px) scale(0.95);
+      }
+      30% {
+        transform: translate(0, -50px) scale(1);
+      }
+      50% {
+        transform: translate(100px, -150px);
+      }
+      70% {
+        transform: translate(200px, -200px);
+      }
+      100% {
+        transform: translate(400px, -300px) scale(0.7);
+        opacity: 0;
+      }
+    }
+    @keyframes wingFlap {
+      0%, 100% {
+        transform: rotate(0deg) translateX(0) translateY(0);
+      }
+      50% {
+        transform: rotate(-30deg) translateX(-10px) translateY(-10px);
+      }
+    }
+    .crow.right {
+      left: auto;
+      right: -20px;
+      transform: scaleX(-1);
+    }
+
+    .grey-area {
+      width: 100%;
+      height: 150vh;
+      background-color: #808080;
+    }
+    .crow.left {
+  left: -95px; /* Позиция новой вороны */
+  opacity: 0;
+  transition: opacity 1s;
+  animation: takeoff 3s ease-in-out forwards;
+  transform: scaleX(1); /* Без инверсии */
+}
+
+    .line {
+  width: 100%; /* Ширина линии */
+  height: 6px; /* Толщина линии */
+  background-color:#d1d1d1;/* Цвет линии */
+  margin-top: 10px; /* Отступ сверху */
+}
+.moon {
+  position: absolute;
+  top: 20%; /* Положение сверху */
+  right: 10%; /* Положение справа */
+  width: 100px; /* Диаметр луны */
+  height: 100px; /* Диаметр луны */
+  background: radial-gradient(circle,#ececec(96, 66, 151, 0.8) 60%, rgba(255, 255, 255, 0) 100%), 
+              linear-gradient(to bottom, #ffffff, #ffffff); /* Градиенты */
+  border-radius: 50%; /* Сделать круг */
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.3); /* Свечение */
+  z-index: 0; /* Луна находится позади основных элементов */
+}
+
+  </style>
+</head>
+<body>
+  <div class="banner">
+    
+    
+   
+ 
+  <div class="control-panel">
+    <button>Play</button>
+    <button>Pause</button>
+    <button>Settings</button>
+  </div>
+  <img src="https://cdn-icons-png.flaticon.com/512/1396/1396740.png" alt="Forest Image" class="banner-image">
+  <h1>NORSE</h1>
+  
+  <p>Скандинавская мифология<br>
+   – один из важнейших пластов<br>
+    мировоззрения брутальных м<br>
+    ореплавателей. Выверенные до<br>
+     мелочей представления о м<br>
+     ире богов позволяли викингам<br>
+      быть стойкими, сильными и п<br>
+      ереносить все невзгоды. Гла<br>
+      вные источники знаний о ска<br>
+      ндинавской мифологии – это <br>
+      «Старшая Эдда» и «Младшая Э<br>
+  </p>
+  <div class="line"></div>
+  <div class="independent-images">
+    <img src="иконка1.png.png" alt="Image 1">
+    <img src="иконка2.png.png" alt="Image 2">
+    <img src="иконка3.png.png" alt="Image 3">
+    <img src="иконка2.png.png" alt="Image 4">
+  </div>
+  <div class="line"></div>
+  <h2>history</h2>
+ <div class="bottom-images">
+  <a href="page1.html">
+    <img src="https://via.placeholder.com/120x80" alt="Image 1">
+  </a>
+  <a href="page2.html">
+    <img src="https://via.placeholder.com/120x80" alt="Image 2">
+  </a>
+  <a href="page3.html">
+    <img src="https://via.placeholder.com/120x80" alt="Image 3">
+  </a>
+  <a href="page4.html">
+    <img src="https://via.placeholder.com/120x80" alt="Image 4">
+  </a>
+</div>
+
+  <p>Скандинавская мифология
+    – один из важнейших пластов
+     мировоззрения брутальных м
+     ореплавателей. Выверенные до
+      мелочей представления о м
+      ире богов позволяли викингам<br>
+       быть стойкими, сильными и п
+       ереносить все невзгоды. Гла
+       вные источники знаний о ска
+       ндинавской мифологии – это 
+       «Старшая Эдда» и «Младшая Э
+   </p>
+</div>
+  <div class="background">
+    <div class="background">
+      <div class="moon"></div>
+      <div class="mountain left"></div>
+      <div class="mountain right"></div>
+      <div class="hill left"></div>
+      <div class="hill right"></div>
+      <!-- Остальные элементы -->
+    
+    </div>
+    
+    <div class="mountain left"></div>
+    <div class="mountain right"></div>
+    <div class="hill left"></div>
+    <div class="hill right"></div>
+    <div class="tree left">
+      <div class="tree" style="left: -150px; top: -100px;"></div> <!-- Новое дерево слева -->
+      <div class="branch-top">
+        <div class="crow">
+          <div class="body"></div>
+          <div class="wing"></div>
+          <div class="tail"></div>
+          <div class="head">
+            <div class="eye"></div>
+            <div class="beak"></div>
+          </div>
+          <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="branch-mid"></div>
+    </div>
+    <div class="tree left">
+      <div class="tree" style="left: -150px; top: -100px;"></div> <!-- Новое дерево слева -->
+      <div class="branch-top">
+        <!-- Добавляем новую ворону слева -->
+        <div class="crow left">
+          <div class="body"></div>
+          <div class="wing"></div>
+          <div class="tail"></div>
+          <div class="head">
+            <div class="eye"></div>
+            <div class="beak"></div>
+          </div>
+          <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="body"></div>
+          <div class="wing"></div>
+          <div class="tail"></div>
+          <div class="head">
+            <div class="eye"></div>
+            <div class="beak"></div>
+          </div>
+          <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="branch-mid"></div>
+      
+    </div>
+    
+    
+      
+    <div class="tree right">
+      <div class="tree" style="right: -150px; top: -100px;"></div> <!-- Новое дерево ближе к центру -->
+      <div class="branch-top">
+        <div class="crow right">
+          <div class="body"></div>
+          <div class="wing"></div>
+          <div class="tail"></div>
+          <div class="head">
+            <div class="eye"></div>
+            <div class="beak"></div>
+          </div>
+          <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+          </div>
+        </div>
+      </div>
+      <div class="branch-mid"></div>
+    </div>
+  </div>
+
+  <div class="grey-area"></div>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const crows = document.querySelectorAll('.crow');
+      crows.forEach(function(crow) {
+        const rect = crow.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          crow.style.opacity = 1;
+          crow.style.animation = 'takeoff 3s ease-in-out forwards';
+        } else {
+          crow.style.opacity = 0;
+          crow.style.animation = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
