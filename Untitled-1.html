@@ -394,55 +394,7 @@
   box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.3); /* Свечение */
   z-index: 0; /* Луна находится позади основных элементов */
 }
-.leaf {
-  position: absolute;
-  bottom: 100%;
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/9f/Autumn_leaves_1.jpg');
-  background-size: cover;
-  width: 40px;
-  height: 40px;
-  animation: leafAnimation 10s linear infinite;
-}
 
-.leaf1 {
-  left: -50px;
-  animation-duration: 8s;
-}
-
-.leaf2 {
-  left: -100px;
-  animation-duration: 12s;
-  animation-delay: 2s;
-}
-
-.leaf3 {
-  left: -150px;
-  animation-duration: 10s;
-  animation-delay: 1s;
-}
-
-.leaf4 {
-  left: -200px;
-  animation-duration: 9s;
-  animation-delay: 3s;
-}
-
-.leaf5 {
-  left: -250px;
-  animation-duration: 11s;
-  animation-delay: 4s;
-}
-
-@keyframes leafAnimation {
-  0% {
-    transform: translateX(0) translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100vw) translateY(50vh);
-    opacity: 0;
-  }
-}
   </style>
 </head>
 <body>
@@ -516,11 +468,6 @@
       <div class="hill left"></div>
       <div class="hill right"></div>
       <!-- Остальные элементы -->
-      <div class="leaf leaf1"></div>
-    <div class="leaf leaf2"></div>
-    <div class="leaf leaf3"></div>
-    <div class="leaf leaf4"></div>
-    <div class="leaf leaf5"></div>
     </div>
     
     <div class="mountain left"></div>
