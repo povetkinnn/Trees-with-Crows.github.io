@@ -25,7 +25,7 @@
   position: relative;
   top: 0%;
   left: 50%;
-  width: 727px;
+  width: 927px;
   height: 1500px;
   transform: translate(-50%, 100%);
   background-color: #6c6c6c;
@@ -37,74 +37,6 @@
   font-family: Arial, sans-serif;
   z-index: 1;
   overflow: hidden;
-}
-
-.banner h1 {
-  margin: 0 0 10px;
-  font-size: 54px;
-  color:  #d1d1d1;
-  text-align: left;
-}
-.banner h2 {
-  margin: 0 0 10px;
-  font-size: 54px;
-  color:  #d1d1d1;
-  text-align: center;
-}
-
-.banner p {
-  margin: 0;
-  font-size: 16px;
-  color:  #d1d1d1;
-  text-align: left;
-}
-.banner-image {
-  float: right; /* Выровнять по правому краю */
-  max-width: 280px; /* Чтобы изображение не превышало половину ширины баннера */
-  height: auto; /* Сохранить пропорции */
-  margin-left: 20px; /* Отступ слева от текста */
-  border-radius: 8px; /* Закруглённые углы, необязательно */
-}
-/* Контейнер для независимых картинок */
-.independent-images {
-  position: relative; /* Независимое позиционирование внутри баннера */
-  left: 50%; /* Центрировать по горизонтали */
-  transform: translateX(-50%);
-  display: flex; /* Размещаем картинки в линию */
-  gap: 117px; /* Расстояние между картинками */
-  z-index: 1; /* Чтобы картинки были над другими элементами */
-}
-
-/* Стили для независимых картинок */
-.independent-images img {
-  width: 80px; /* Ширина картинки */
-  height: 80px; /* Высота картинки */
-  border-radius: 50%; /* Закругленные углы */
-  border: 2px solid #d1d1d1; /* Рамка вокруг картинок */
-  object-fit: cover; /* Заполнение блока картинкой */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Тень */
-  align: center;
-}
-/* Контейнер для нижних картинок */
-.bottom-images {
-  display: flex; /* Расположить картинки в одну линию */
-  justify-content: space-around; /* Равномерно распределить пространство между картинками */
-  align-items: center; /* Центрировать по вертикали */
-  position: relative; /* Расположить внутри баннера */
-  bottom: 20px; /* Отступ от нижнего края баннера */
-  left: 50%; /* Центрировать по горизонтали */
-  transform: translateX(-50%);
-  width: 90%; /* Ширина контейнера */
-}
-
-/* Стили для картинок */
-.bottom-images img {
-  width: 120px; /* Ширина каждой картинки */
-  height: 280px; /* Высота каждой картинки */
-  border: 2px solid #ccc; /* Рамка вокруг картинок */
-  border-radius: 8px; /* Закругленные углы */
-  object-fit: cover; /* Заполнить блок, сохраняя пропорции */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Тень */
 }
 
 .control-panel {
@@ -130,9 +62,27 @@
     }
     .banner-content {
       display: flex;
-      width: 300%;
+      width: 100%;
       transition: transform 0.5s ease-in-out;
     }
+    .content-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      text-align: center;
+    }
+    .content-slide h1, .content-slide p {
+      font-size: 24px;
+      color: #d1d1d1;
+    }
+    .content-slide img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+
     .hill {
       position: absolute;
       bottom: 0;
@@ -396,61 +346,33 @@
   box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.3); /* Свечение */
   z-index: 0; /* Луна находится позади основных элементов */
 }
-.clouds {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150px; /* Высота области облаков */
-  overflow: hidden; /* Скрыть выходящие за границы элементы */
-  z-index: 2; /* Поверх остального содержимого */
+
+ 
+
+#slide-1 h1 {
+  font-size: 76px; /* Размер заголовка */
+  color: #333; /* Цвет текста */
+  float: left;
+}
+#slide-1 p {
+  font-size: 26px; /* Размер заголовка */
+  color: #333; /* Цвет текста */
+  float: left;
 }
 
-.cloud {
-  position: absolute;
-  width: 120px; /* Размер облака */
-  height: 60px; /* Размер облака */
-  background: #fff;
-  border-radius: 50%; /* Скругление для облака */
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Тень для объема */
-  animation: moveClouds 20s linear infinite;
+#slide-1 img {
+ width: 400px; /* Максимальная ширина изображения */
+  margin: 10px auto; /* Центрирование */
+  float: right;
+  display: block; /* Блочный элемент для изображения */
+  border-radius: 8px; /* Скругленные углы */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
 }
 
-.cloud:nth-child(1) {
-  top: 20px;
-  left: 10%;
-  animation-duration: 18s;
-}
-
-.cloud:nth-child(2) {
-  top: 50px;
-  left: 30%;
-  animation-duration: 25s;
-}
-
-.cloud:nth-child(3) {
-  top: 10px;
-  left: 60%;
-  animation-duration: 22s;
-}
-
-/* Анимация движения облаков */
-@keyframes moveClouds {
-  0% {
-    transform: translateX(-150px);
-  }
-  100% {
-    transform: translateX(100vw);
-  }
-}
   </style>
 </head>
 <body>
   <div class="banner">
-    
-    
-   
- 
     <div class="control-panel">
       <button data-index="0">1</button>
       <button data-index="1">2</button>
@@ -458,57 +380,51 @@
     </div>
     <div class="banner-content">
       <div class="content-slide" id="slide-1">
-        
-  <img src="https://cdn-icons-png.flaticon.com/512/1396/1396740.png" alt="Forest Image" class="banner-image">
-  <h1>NORSE</h1>
-  
-  <p>Скандинавская мифология<br>
-   – один из важнейших пластов<br>
-    мировоззрения брутальных м<br>
-    ореплавателей. Выверенные до<br>
-     мелочей представления о м<br>
-     ире богов позволяли викингам<br>
-      быть стойкими, сильными и п<br>
-      ереносить все невзгоды. Гла<br>
-      вные источники знаний о ска<br>
-      ндинавской мифологии – это <br>
-      «Старшая Эдда» и «Младшая Э<br>
-  </p>
-  <div class="line"></div>
-  <div class="independent-images">
+        <img src="https://cdn-icons-png.flaticon.com/512/1396/1396740.png" alt="Forest Image" class="banner-image">
+        <h1>NORSE</h1>
+        <p>Скандинавская мифология<br>
+          – один из важнейших пластов<br>
+           мировоззрения брутальных м<br>
+           ореплавателей. Выверенные до<br>
+            мелочей представления о м<br>
+            ире богов позволяли викингам<br>
+             быть стойкими, сильными и п<br>
+             ереносить все невзгоды. Гла<br>
+             вные источники знаний о ска<br>
+             ндинавской мифологии – это <br>
+             «Старшая Эдда» и «Младшая Э<br>
+         </p>
+          
+ 
     <img src="иконка1.png.png" alt="Image 1">
     <img src="иконка2.png.png" alt="Image 2">
     <img src="иконка3.png.png" alt="Image 3">
     <img src="иконка2.png.png" alt="Image 4">
-  </div>
-  <div class="line"></div>
-  <h2>history</h2>
- <div class="bottom-images">
-  <a href="page1.html">
+  
+  
+  <h1>history</h1>
+
+ 
     <img src="https://via.placeholder.com/120x80" alt="Image 1">
-  </a>
-  <a href="page2.html">
+
+ 
     <img src="https://via.placeholder.com/120x80" alt="Image 2">
-  </a>
-  <a href="page3.html">
+  
+ 
     <img src="https://via.placeholder.com/120x80" alt="Image 3">
-  </a>
-  <a href="page4.html">
+ 
+
     <img src="https://via.placeholder.com/120x80" alt="Image 4">
-  </a>
-</div>
-</div>
-</div>
-</div>
 
-  <p> Э
-   </p>
-
-  <div class="content-slide" id="slide-2"></div>
-  <div class="content-slide" id="slide-3">
+      </div>
+      <div class="content-slide" id="slide-2">
+        <h1>Привет</h1>
+      </div>
+      <div class="content-slide" id="slide-3">
+        <h1>Мир</h1>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
   <div class="background">
     <div class="background">
       <div class="moon"></div>
@@ -634,29 +550,34 @@
   let currentSlideIndex = 0; // Текущий индекс слайда
 
   // Функция для переключения слайдов
-  function switchSlide(index) {
-    // Проверяем, чтобы индекс был в допустимых пределах
-    if (index >= 0 && index < slides.length) {
-      currentSlideIndex = index;
+  document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".control-panel button");
+      const bannerContent = document.querySelector(".banner-content");
+      const body = document.body;
+      const pyramids = document.querySelectorAll(".pyramid");
 
-      // Сдвигаем содержимое влево на нужное количество слайдов
-      const offset = -index * 100; // Смещение в процентах
-      bannerContent.style.transform = `translateX(${offset}%)`;
+    
 
-      // Обновляем состояние кнопок (выделяем активную)
-      controlButtons.forEach((button, i) => {
-        button.style.backgroundColor = i === index ? '#333' : '#6c6c6c';
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+          const index = parseInt(button.getAttribute("data-index"));
+          const shift = -index * 100;
+
+          // Перемещаем слайды
+          bannerContent.style.transform = `translateX(${shift}%)`;
+
+          // Меняем цвет фона
+          body.style.backgroundColor = backgrounds[index];
+
+          // Управляем пирамидами
+          if (index === 1) {
+            pyramids.forEach(pyramid => pyramid.classList.add("visible"));
+          } else {
+            pyramids.forEach(pyramid => pyramid.classList.remove("visible"));
+          }
+        });
       });
-    }
-  }
-
-  // Навешиваем обработчики на кнопки
-  controlButtons.forEach((button, index) => {
-    button.addEventListener('click', () => switchSlide(index));
-  });
-
-  // Инициализируем начальное состояние
-  switchSlide(0);
+    });
 
 
   </script>
