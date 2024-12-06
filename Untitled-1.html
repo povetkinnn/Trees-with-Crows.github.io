@@ -63,7 +63,9 @@
     .banner-content {
       display: flex;
       width: 100%;
+      
       transition: transform 0.5s ease-in-out;
+      
     }
     .content-slide {
       min-width: 100%;
@@ -71,17 +73,8 @@
       padding: 20px;
       text-align: center;
     }
-    .content-slide h1, .content-slide p {
-      font-size: 24px;
-      color: #d1d1d1;
-    }
-    .content-slide img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
+   
+   
 
     .hill {
       position: absolute;
@@ -350,25 +343,100 @@
  
 
 #slide-1 h1 {
-  font-size: 76px; /* Размер заголовка */
-  color: #333; /* Цвет текста */
-  float: left;
+  
+  margin: 0 0 10px;
+  font-size: 54px;
+  color:  #d1d1d1;
+  text-align: left;
+}
+#slide-1 h2 {
+  
+  margin: 0 0 10px;
+  font-size: 54px;
+  color:  #d1d1d1;
+  text-align: center;
 }
 #slide-1 p {
-  font-size: 26px; /* Размер заголовка */
-  color: #333; /* Цвет текста */
-  float: left;
+  margin: 0;
+  font-size: 16px;
+  color:  #d1d1d1;
+  text-align: left;
 }
 
 #slide-1 img {
- width: 400px; /* Максимальная ширина изображения */
+ width: 250px; /* Максимальная ширина изображения */
   margin: 10px auto; /* Центрирование */
   float: right;
   display: block; /* Блочный элемент для изображения */
   border-radius: 8px; /* Скругленные углы */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+
+}
+.bottom-images {
+  display: flex; /* Flexbox для горизонтального выравнивания */
+  justify-content: center; /* Центрирование элементов внутри контейнера */
+  gap: 20px; /* Расстояние между картинками */
+  margin-top: 20px; /* Отступ сверху (при необходимости) */
 }
 
+.bottom-images img {
+  width: 50px; /* Новая меньшая ширина */
+  height: 100px; /* Новая большая высота */
+  border: 2px solid #ccc; /* Рамка */
+  border-radius: 8px; /* Скругленные углы */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Тень */
+  transition: transform 0.3s; /* Анимация при наведении */
+  object-fit: cover; /* Заполнение контейнера без искажений */
+}
+
+.bottom-images img:hover {
+  transform: scale(1.1); /* Увеличение при наведении */
+}
+
+/* Дополнительные медиазапросы для адаптивности */
+@media (max-width: 768px) {
+  .bottom-images img {
+    width: 60px;
+    height: 90px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .bottom-images img {
+    width: 80px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .bottom-images img {
+    width: 100px;
+    height: 150px;
+  }
+}
+
+
+.independent-images img {
+  width: 130px; /* Ширина картинки */
+  height: 130px; /* Высота картинки */
+  border-radius: 50%; /* Закругленные углы */
+
+  object-fit: cover; /* Заполнение блока картинкой */
+
+  align: center;
+}
+.independent-images {
+  position: relative; /* Независимое позиционирование внутри баннера */
+  left: 50%; /* Центрировать по горизонтали */
+  transform: translateX(-50%);
+  display: flex; /* Размещаем картинки в линию */
+  gap: 117px; /* Расстояние между картинками */
+  z-index: 1; /* Чтобы картинки были над другими элементами */
+}
+.image-text {
+  margin-bottom: 10px; /* Отступ между текстом и картинкой */
+  font-size: 18px; /* Размер шрифта */
+  color: #333; /* Цвет текста */
+}
   </style>
 </head>
 <body>
@@ -394,34 +462,46 @@
              ндинавской мифологии – это <br>
              «Старшая Эдда» и «Младшая Э<br>
          </p>
-          
- 
-    <img src="иконка1.png.png" alt="Image 1">
-    <img src="иконка2.png.png" alt="Image 2">
-    <img src="иконка3.png.png" alt="Image 3">
-    <img src="иконка2.png.png" alt="Image 4">
+         <div class="line"></div>
+         <div class="independent-images">
+          <img src="иконка1.png.png" alt="Image 1">
+          <img src="иконка2.png.png" alt="Image 2">
+          <img src="иконка3.png.png" alt="Image 3">
+          <img src="иконка2.png.png" alt="Image 4">
+        </div>
+        <div class="line"></div>
+  <h2>history</h2>
+  <div class="line"></div>
   
+  <div class="bottom-images" >
+    <a href="https://www.krugosvet.ru/enc/kultura_i_obrazovanie/religiya/SKANDINAVSKAYA_MIFOLOGIYA.html"> <p class="image-text">История создания</p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKLpL-1UFIuFtUcstyCkS_Y-Rr1vPrlJv-iA&s" alt="Image 1"></a>
+    <a href="https://mythology.fandom.com/ru/wiki/%D0%9E%D0%B4%D0%B8%D0%BD"> <p class="image-text">Один </p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKLpL-1UFIuFtUcstyCkS_Y-Rr1vPrlJv-iA&s" alt="Image 2"></a>
+    <a href="https://www.litres.ru/book/sofi-urt/asgard-skandinavskaya-mifologiya-69527881/"> <p class="image-text">Асгард </p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKLpL-1UFIuFtUcstyCkS_Y-Rr1vPrlJv-iA&s" alt="Image 3"></a>
+    <a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D0%B3%D0%BD%D0%B0%D1%80%D1%91%D0%BA"> <p class="image-text">Рагнарек </p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKLpL-1UFIuFtUcstyCkS_Y-Rr1vPrlJv-iA&s" alt="Image 4"></a>
+  </div>
   
-  <h1>history</h1>
+  <p>Пророчество о Рагнарёке, согласно мифологическим источникам, было произнесено мёртвой провидицей Вёльвой, которую специально для этого на время вызвал из могилы Один.
 
- 
-    <img src="https://via.placeholder.com/120x80" alt="Image 1">
+Предвестием Рагнарёка явились смерть бога Бальдра (это событие повлияло на все 9 миров, принеся «фимбулвинтер», то есть вечную зиму), а затем нарушение родовых норм, кровавые распри родичей («детей сестёр»), моральный хаос. Сюжет о Рагнарёке присутствует в «Речах Вафтруднира», «Старшей Эдде» и «Младшей Эдде».
 
- 
-    <img src="https://via.placeholder.com/120x80" alt="Image 2">
-  
- 
-    <img src="https://via.placeholder.com/120x80" alt="Image 3">
- 
+Согласно пророчеству, в день Рагнарёка чудовищный волк Фенрир освободится от своих пут. Его сын, громадный волк по имени Сколль (др.-сканд. Sköll — «предатель»), преследующий Солнце, наконец догонит его. Второй сын Фенрира, волк по имени Хати (др.-сканд. Hati — «ненавистник»), схватит месяц. А когда из глубин всплывёт мировой змей Йормунганд, море выйдет из берегов. К ним примкнёт и огненный великан Сурт с пылающим мечом, который выжжет землю; повелительница загробного царства Хель и бог лжи и обмана Локи вместе с инеистыми великанами — гримтурсенами и ётунами. Из Хельхейма приплывёт освобождённый потопом корабль Нагльфар с войском ётунов. Войско сынов Муспельхейма проскачет по радужному мосту Биврёст, который при этом разрушится.
 
-    <img src="https://via.placeholder.com/120x80" alt="Image 4">
+Против них выступят все асы во главе с Одином и все эйнхерии, которых призовёт страж богов Хеймдалль, трубя в Гьяллархорн — «громкий рог». Перед битвой Один отправится к Мимиру, хозяину источника мудрости, испрашивая у него совета.
 
-      </div>
+Битва произойдет на равнине Вигрид. Один сразится в битве с Фенриром и будет им убит, но сын Одина Видар тут же разорвёт пасть волка (или пронзит его мечом). Тор будет биться со змеем Ёрмунгандом и убьёт его, но и сам падёт от его яда. Бог Фрейр сразится с Суртом и, отдав свой меч слуге Скирниру[англ.], погибнет; Хеймдалль — с Локи; Тюр — с псом Гармом. Видя, что ни зло, ни добро не могут победить, великан Сурт соберёт всю убийственную мощь подвластного ему огня и обрушит её на землю, закончив таким образом битву Тьмы и Света.
+
+Но за гибелью мира последует его возрождение: выживут и поселятся на месте, где раньше была долина Идаволл (в центре Асгарда), сыновья Одина — Видар и Вали, и сыновья Тора — Магни и Моди, которые унаследуют молот Мьёльнир. Возвратятся из царства мёртвых и примирятся между собой Бальдр и его невольный убийца — слепой бог Хёд. Выживут, укрывшись в роще Ходдмимир, два человека — Лив и Ливтрасир, которые вновь дадут начало новому человеческому роду.
+</p></div>
       <div class="content-slide" id="slide-2">
-        <h1>Привет</h1>
+        <p>Обе эти книги — и «Младшая Эдда» (она же «Прозаическая Эдда», а также, по автору, «Сноррова Эдда»), и «Старшая Эдда» (она же «Песенная Эдда» и «Эдда Сэмунда», по имени её мифического автора) — используют древнескандинавские и древнегерманские легенды. В обеих заметно влияние христианства (особенно в «Младшей»), упоминаются исторические личности и литературные герои, которые воспринимались как реальные (например, «верховный конунг Приам» —  гомеровский персонаж из Илиады). Кроме того, «Младшая Эдда» напрямую ссылается на «Старшую» (точнее, на составляющие её легенды — текст самого раннего сохранившегося манускрипта «Старшей Эдды» написан позже, чем текст «Младшей»). А вот судьба этих книг сложилась по-разному.<br>
+         </p>
+         <h1>Младшая Эдда: учебник для поэтов</h1>
+         С «Младшей Эддой» (изначально она называлась просто «Эддой») всё просто. Написал её в 1222–1225 годах (некоторые источники уточняют: в 1223 году) исландский поэт, прозаик, историограф, юрист и политик Снорри Стурлусон, представитель знатного и влиятельного рода Стурлунгов.
+
+         <p>Будучи христианином и при этом человеком рационалистически настроенным, Стурлусон предлагает совершенно нерелигиозную версию того, как возник древнескандинавский пантеон. По мнению Снорри, изначально асы, ваны и прочие божества были людьми, которые при жизни чем-то прославились. Позднее народная память трансформировала их реальные заслуги и приписала несуществующие, люди начали поговаривать: «Эх, если бы нас возглавил тот покойный полководец, можно было бы не сомневаться в исходе войны» или «Сюда бы мудрейшего вождя прошлых времён, он бы рассудил верно»... и вот уже готов конунг Один, потомок троянцев!</p>
       </div>
       <div class="content-slide" id="slide-3">
-        <h1>Мир</h1>
+        <h1>Младшая Эдда: учебник для поэтов</h1>
       </div>
     </div>
   </div>
@@ -528,58 +608,30 @@
   <div class="grey-area"></div>
 
   <script>
-    window.addEventListener('scroll', function() {
-      const crows = document.querySelectorAll('.crow');
-      crows.forEach(function(crow) {
-        const rect = crow.getBoundingClientRect();
-        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-          crow.style.opacity = 1;
-          crow.style.animation = 'takeoff 3s ease-in-out forwards';
-        } else {
-          crow.style.opacity = 0;
-          crow.style.animation = 'none';
-        }
+    // Анимация для ворон при скролле
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.crow').forEach(crow => {
+        const { top, bottom } = crow.getBoundingClientRect();
+        crow.style.cssText =
+          top >= 0 && bottom <= window.innerHeight
+            ? 'opacity: 1; animation: takeoff 3s ease-in-out forwards;'
+            : 'opacity: 0; animation: none;';
       });
     });
-   
-  // Получаем элементы
-  const controlButtons = document.querySelectorAll('.control-panel button');
-  const slides = document.querySelectorAll('.content-slide');
-  const bannerContent = document.querySelector('.banner-content');
-
-  let currentSlideIndex = 0; // Текущий индекс слайда
-
-  // Функция для переключения слайдов
-  document.addEventListener("DOMContentLoaded", () => {
-      const buttons = document.querySelectorAll(".control-panel button");
-      const bannerContent = document.querySelector(".banner-content");
-      const body = document.body;
-      const pyramids = document.querySelectorAll(".pyramid");
-
-    
-
+  
+    // Переключение слайдов
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttons = document.querySelectorAll('.control-panel button');
+      const bannerContent = document.querySelector('.banner-content');
+  
       buttons.forEach(button => {
-        button.addEventListener("click", () => {
-          const index = parseInt(button.getAttribute("data-index"));
-          const shift = -index * 100;
-
-          // Перемещаем слайды
-          bannerContent.style.transform = `translateX(${shift}%)`;
-
-          // Меняем цвет фона
-          body.style.backgroundColor = backgrounds[index];
-
-          // Управляем пирамидами
-          if (index === 1) {
-            pyramids.forEach(pyramid => pyramid.classList.add("visible"));
-          } else {
-            pyramids.forEach(pyramid => pyramid.classList.remove("visible"));
-          }
+        button.addEventListener('click', () => {
+          const index = parseInt(button.dataset.index);
+          bannerContent.style.transform = `translateX(${-index * 100}%)`;
         });
       });
     });
-
-
   </script>
+  
 </body>
 </html>
